@@ -35,6 +35,18 @@ class Breakdown:
         self.keep_playing = True
     
     def cut_chute(self, guess_correct):
+        """This method cuts a line off the top of the chute if the guess 
+        was incorrect. If the chute is cut to the parachuter's head, the
+        head is replaced with an X and the game ends because the parachuter
+        is dead.
+
+        Args:
+            self(Breakdown): Instance of Breakown.
+            guess_correct(boolean): passed in from the guesser class.
+
+        Returns:
+            keep_playing(boolean): communicate whether player can keep playing.
+        """
         if not guess_correct:
             self.parachuter.pop(0)
         if (len(self.parachuter)>5):

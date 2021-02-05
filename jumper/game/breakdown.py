@@ -7,8 +7,6 @@ class Breakdown:
     classs.
 
     Attributes:
-        guess_correct (boolean): a value of whether the guess was
-            correct.
         parachuter (list of strings): A list of strings that, when
             displayed, show a parachuter. List is changed by incorrect
             guesses.
@@ -34,37 +32,35 @@ class Breakdown:
                            "  / \  ",
                            "       ",
                            "^^^^^^^"]
-        self.guess_correct = True
         self.keep_playing = True
     
-    def cut_chute(self, parachuter):
-        if self.keep_playing:
-            if not self.guess_correct:
-                parachuter.pop(0)
-                return parachuter
-            return parachuter
+    def cut_chute(self, guess_correct):
+        if not guess_correct:
+            self.parachuter.pop(0)
+        if (len(self.parachuter)>5):
+            self.keep_playing = True
         else:
-            parachuter[0] = "   X   "
-            return parachuter
-
-    def can_guess(self):
-        self.keep_playing = (len(self.parachuter) > 5)
+            self.parachuter[0] = "   X   "
+            self.keep_playing = False
+            self.parachuter.append("Game over!")
+        return self.keep_playing
 
 
 """TESTS
+import random
+options = [True, False]
 # test to make sure the class can be initialized.
 x = Breakdown()
 # test to make sure parachute prints correctly.
 for line in x.parachuter:
     print(line)
-# test to make sure a false guess cuts the chute.
-x.guess_correct = False
-x.cut_chute(x.parachuter)
-for line in x.parachuter:
-    print(line)
-# test to make sure a true guess maintains the chute.
-x.guess_correct = True
-x.cut_chute(x.parachuter)
-for line in x.parachuter:
-    print(line)
+# loop until the game ends.
+while x.keep_playing:
+    # test to make sure a random guess maintains or breaks
+    # the chute depending on if it's true or false.
+    bool_op = (random.choice(options))
+    x.cut_chute(bool_op)
+    print(bool_op)
+    for line in x.parachuter:
+        print(line)
 """

@@ -36,8 +36,12 @@ class Console:
     def display_parachuter(self):
         #This will display the parachuter variable to the screen
         j = 0
-        for j in range(8):
-            print (self.breakdown.parachuter[j])
+        for j in self.breakdown.parachuter:
+            print (j)
             
     def display_guesses(self):
-        print (self.guesser.guess)
+        if self.guesser.guess_correct:
+            guess_indexes = [n for n,x in enumerate(self.director.word) if x == self.guesser.guess]
+            for index in guess_indexes:
+                self.word[index] = f'{self.guesser.guess} '
+        print(self.word)

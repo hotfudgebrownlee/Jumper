@@ -1,12 +1,11 @@
-# from game.director import Director
+from game.director import Director
 class Guesser:
     def __init__(self):
         self.track_guess = []
-        # self.director = Director()
+        self.director = Director()
         self.guess_correct = True
-        self.word = "apples"
+        self.guess = ''
         
-    
     def get_input(self):
         guess = input('Guess a letter [a-z]: ')
         if guess in "abcdefghijklmnopqrstuvwxyz":
@@ -15,16 +14,12 @@ class Guesser:
                     print(f"You've already guessed {guess}. Try again!")
                     self.get_input()
                 else:
-                    if guess in self.word:
+                    if guess in self.director.word:
                         self.guess_correct = True
-                        self.track_guess.append(guess)
                     else:
                         self.guess_correct = False
-                        self.track_guess.append(guess)
+                    self.track_guess.append(guess)
+                    self.guess = guess
         else:
             print("Not a valid guess.")
             self.get_input()
-
-x = Guesser()
-x.get_input()
-print (x.guess_correct)

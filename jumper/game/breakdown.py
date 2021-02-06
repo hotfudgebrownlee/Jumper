@@ -1,8 +1,7 @@
-from pprint import pprint
 class Breakdown:
     """The purpose of this class is to keep track of the user
     score. It passes a parachuter display to the console class
-    and a keep_playing value to the director class. It receives
+    and a can_play value to the director class. It receives
     a boolean value on if the guess was correct from the guesser
     classs.
 
@@ -18,9 +17,8 @@ class Breakdown:
     Returns:
         keep_playing (boolean): indicates if parachute is gone or not.
     """
-    def __init__(self):
+    def __init__(self,can_play):
         """Class constructor. Declares/Initializes instance attributes.
-
         self(Breakdown): Instance of Breakdown.
         """
         self.parachuter = ["  ___  ",
@@ -32,7 +30,7 @@ class Breakdown:
                            "  / \  ",
                            "       ",
                            "^^^^^^^"]
-        self.keep_playing = True
+        self.can_play = True
     
     def cut_chute(self, guess_correct):
         """This method cuts a line off the top of the chute if the guess 
@@ -45,17 +43,17 @@ class Breakdown:
             guess_correct(boolean): passed in from the guesser class.
 
         Returns:
-            keep_playing(boolean): communicate whether player can keep playing.
+            can_play(boolean): communicate whether player can keep playing.
         """
         if not guess_correct:
             self.parachuter.pop(0)
         if (len(self.parachuter)>5):
-            self.keep_playing = True
+            self.can_play = True
         else:
             self.parachuter[0] = "   X   "
-            self.keep_playing = False
+            self.can_play = False
             self.parachuter.append("Game over!")
-        return self.keep_playing
+        return self.can_play
 
 
 """TESTS
@@ -67,7 +65,7 @@ x = Breakdown()
 for line in x.parachuter:
     print(line)
 # loop until the game ends.
-while x.keep_playing:
+while x.can_play:
     # test to make sure a random guess maintains or breaks
     # the chute depending on if it's true or false.
     bool_op = (random.choice(options))

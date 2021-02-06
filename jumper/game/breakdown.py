@@ -38,9 +38,8 @@ class Breakdown:
         """
         if not guess_correct:
             self.parachuter.pop(0)
-        if(len(self.parachuter)<5):
+        if(len(self.parachuter)==5):
             self.parachuter[0] = "   X   "
-            self.parachuter.append("Game over!")
 
 
 """TESTS

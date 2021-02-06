@@ -31,4 +31,4 @@ class Console:
         if correct:
             for i in range(len(guess_word)):
                 if guess_word[i] == guess:
-                    self.word[i] = guess
+                    self.word[i] = f'{guess} '

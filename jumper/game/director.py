@@ -39,7 +39,7 @@ class Director:
             self.do_outputs()
 
     def get_inputs(self):
-        self.console.display_word(self.word)
+        self.console.display_word()
         self.console.display_parachuter(self.breakdown.parachuter)
         self.guesser.get_input(self.word)
 
@@ -54,4 +54,3 @@ class Director:
         self.console.display_guesses(self.guesser.guess_correct,
                                     self.guesser.guess,
                                     self.word)
-        self.console.display_parachuter(self.breakdown.parachuter)

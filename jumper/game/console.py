@@ -11,17 +11,13 @@ class Console:
         # word will be read from the director class and the length will be calculated
         # using the len() function
         word_length = len(guess_word)
-
-        i = 0
-
         # the word variable will be filled with the right amount of blanks using
         # this for loop which will also print the word variable to the sceen
         for i in range(word_length):
-            if self.word == None:
-                self.word.append("_ ")
+            self.word.append("_ ")
     
-    def display_word(self, guess_word):
-        for letter in guess_word:
+    def display_word(self):
+        for letter in self.word:
             print(letter,end='')
         print('')
 
@@ -33,7 +29,6 @@ class Console:
             
     def display_guesses(self,correct,guess,guess_word):
         if correct:
-            guess_indexes = [n for n,x in enumerate(guess_word) if x == guess]
-            for index in guess_indexes:
-                self.word[index] = f'{guess} '
-        print(self.word)
+            for i in range(len(guess_word)):
+                if guess_word[i] == guess:
+                    self.word[i] = guess

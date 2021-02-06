@@ -17,20 +17,11 @@ class Breakdown:
     Returns:
         keep_playing (boolean): indicates if parachute is gone or not.
     """
-    def __init__(self,can_play):
+    def __init__(self):
         """Class constructor. Declares/Initializes instance attributes.
         self(Breakdown): Instance of Breakdown.
         """
-        self.parachuter = ["  ___  ",
-                           " /___\ ",
-                           " \   / ",
-                           "  \ /  ",
-                           "   0   ",
-                           "  /|\  ",
-                           "  / \  ",
-                           "       ",
-                           "^^^^^^^"]
-        self.can_play = True
+        self.parachuter = ["  ___  "," /___\ "," \   / ","  \ /  ","   0   ","  /|\  ","  / \  ","       ","^^^^^^^"]
     
     def cut_chute(self, guess_correct):
         """This method cuts a line off the top of the chute if the guess 
@@ -47,13 +38,9 @@ class Breakdown:
         """
         if not guess_correct:
             self.parachuter.pop(0)
-        if (len(self.parachuter)>5):
-            self.can_play = True
-        else:
+        if(len(self.parachuter)<5):
             self.parachuter[0] = "   X   "
-            self.can_play = False
             self.parachuter.append("Game over!")
-        return self.can_play
 
 
 """TESTS

@@ -20,8 +20,8 @@ class Console:
             if self.word == None:
                 self.word.append("_ ")
     
-    def display_word(self):
-        for letter in self.word:
+    def display_word(self, guess_word):
+        for letter in guess_word:
             print(letter,end='')
         print('')
 

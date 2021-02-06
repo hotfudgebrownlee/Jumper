@@ -18,11 +18,12 @@ class Director:
 
         self(Director): instance of Director.
         """
-        self.guesser = Guesser
-        self.console = Console
-        self.breakdown = Breakdown
+        self.guesser = Guesser()
+        self.console = Console()
+        self.breakdown = Breakdown()
         self.wordlist = ['apple', 'bazaar', 'crayon', 'query', 'ears']
         self.word = ''
+        self.keep_playing = True
 
     def get_word(self):
         # chooses a word from the list.
@@ -31,19 +32,23 @@ class Director:
 
     def start_game(self):
         self.word = self.get_word()
-        self.console.create_blanks(self,self.word)
-        while self.breakdown.can_play:
+        self.console.create_blanks(self.word)
+        while self.keep_playing:
             self.get_inputs()
             self.do_updates()
             self.do_outputs()
 
     def get_inputs(self):
-        self.console.display_word()
+        self.console.display_word(self.word)
         self.console.display_parachuter(self.breakdown.parachuter)
         self.guesser.get_input(self.word)
 
     def do_updates(self):
         self.breakdown.cut_chute(self.guesser.guess_correct)
+        if(len(self.breakdown.parachuter)>5):
+            self.keep_playing = True
+        else:
+            self.keep_playing = False
 
     def do_outputs(self):
         self.console.display_guesses(self.guesser.guess_correct,
